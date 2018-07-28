@@ -10,7 +10,8 @@
     <div v-if="step === 2">
       <div class="selected-image"
         :class="selectedFilter  "
-        :style="{ backgroundImage: 'url(' + image + ')'}"></div>
+        :style="{ backgroundImage: 'url(' + image + ')'}">
+      </div>
 
       <div class="filter-container">
         <filter-type v-for="filter in filters"
@@ -18,6 +19,23 @@
           :image="image"
           :key="filters.indexOf(filter)">
         </filter-type>
+      </div>
+    </div>
+
+    <div v-if="step === 3">
+      <div class="selected-image"
+        :class="selectedFilter  "
+        :style="{ backgroundImage: 'url(' + image + ')'}">
+      </div>
+
+      <div class="caption-container">
+        <textarea class="caption-input"
+          placeholder="Write a caption..."
+          type="text"
+          :value="value"
+          @input="$emit('input', $event.target.value)"
+        >
+        </textarea>
       </div>
     </div>
   </div>
@@ -40,7 +58,8 @@ export default {
     image: String,
     posts: Array,
     selectedFilter: String,
-    step: Number
+    step: Number,
+    value: String
   }
 }
 </script>
