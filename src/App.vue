@@ -6,14 +6,19 @@
         <a class="cancel-cta"
           v-if="step === 2 || step === 3"
           @click="goToHome">
-            Cancel
+          Cancel
         </a>
 
         <a class="next-cta"
           v-if="step === 2"
-          @click="step++"
-        >
+          @click="step++">
           Next
+        </a>
+
+        <a class="next-cta"
+          v-if="step === 3"
+          @click="sharePost">
+          Share
         </a>
       </div>
 
@@ -101,6 +106,20 @@ export default {
       this.selectedFilter = ''
       this.caption = ''
       this.step = 1
+    },
+
+    sharePost () {
+      const post = {
+        username: 'fullstack_vue',
+        userImage: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/vue_lg_bg.png',
+        postImage: this.image,
+        likes: 0,
+        caption: this.caption,
+        filter: this.selectedFilter
+      }
+
+      this.posts.unshift(post)
+      this.goToHome()
     }
   }
 }
